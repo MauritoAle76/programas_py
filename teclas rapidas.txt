@@ -1,0 +1,3 @@
+# ALT + SHIFT + FLECHA ABAJO para duplicar la línea
+# ALT + Fn + FLECHA ARRIBA o FLECHA ABAJO para mover la línea hacia arriba y hacia ABAJO
+
