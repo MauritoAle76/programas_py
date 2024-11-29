@@ -1,8 +1,18 @@
+##### Declaracion de Funciones #####
+
+
+def alta_de_productos_nuevos():
+    print("Prodecemos al alta de producto con FUNCION")
+
+
 # Menu de Opciones
 def main():
     while True:  # arranco con un while
         print()
-        print("Menu de Gestion de Productos\n")
+        print("=" * 30)
+        print("Menu de Gestion de Productos")
+        print("=" * 30)
+        print()
         print("1. Alta de productos nuevos")
         print("2. Consulta de datos de productos")
         print("3. Modificar la cantidad de stock de un producto")
@@ -18,7 +28,7 @@ def main():
         print(f"Has seleccionado la opcion: {opcion}\n")
 
         if opcion == 1:
-            print("Prodecemos al alta de producto")
+            alta_de_productos_nuevos()
         elif opcion == 2:
             print("Procedemos a llevarlo al menu de consultas")
 
@@ -35,10 +45,11 @@ def main():
             print("Procedemos a listar los articulos con bajo stock")
 
         elif opcion == 7:
-            print("saliendo de la app, muchas gracias por unilizar nuesto sistema\n")
+            print("Saliendo de la app, muchas gracias por unilizar nuesto sistema\n")
             break
         else:
             print("La opción es incorrecta\n")
 
 
-main()  # Llamamos a la función main para iniciar el programa.
+if __name__ == "__main__":
+    main()  # Llamamos a la función main para iniciar el programa.

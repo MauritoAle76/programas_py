@@ -51,4 +51,11 @@ def main():
             print("La opción es incorrecta\n")
 
 
+def alta_producto():
+    # Solicitar al usuario que ingrese los datos del producto
+    nombre = input("Ingrese el nombre del producto: ")
+    cantidad = int(input("Ingrese la cantidad del producto: "))
+    precio = float(input("Ingrese el precio del producto: "))
+
+
 main()  # Llamamos a la función main para iniciar el programa.

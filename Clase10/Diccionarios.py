@@ -1,4 +1,4 @@
-# creo un diccionario entre {}
+""" # creo un diccionario entre {}
 
 productos_en_diccionarios = {"manzana": 30, "pera": 25, "naranja": 20}
 
@@ -93,3 +93,18 @@ for _ in range(3):
 
 print(ventas_dia)
 print(inventario)
+"""
+
+# diccionario de diccionarios
+
+dic = {
+    1: {"nombre": "Juan", "edad": 25},
+    2: {"nombre": "Pedro", "edad": 30},
+    3: {"nombre": "Ana", "edad": 20},
+}
+
+print(dic[1]["nombre"])
+
+dic[4] = {"nombre": "Jose", "edad": 25}
+
+print(dic)

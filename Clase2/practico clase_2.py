@@ -60,7 +60,7 @@ while indice < len(meses_del_año):
     # queda en 0 y el valor con el sueldo
 
     meses_del_año[indice][1] = meses_del_año[indice][1] + sueldo
-    
+
     indice += 1
 
 # vamos a buscar el sueldo mas alto de la lista
@@ -75,7 +75,6 @@ while indice < len(meses_del_año):
 #         mes_max = mes
 
 # probemos con whie
-
 indice_1 = 0
 sueldo_mas_alto = meses_del_año[0][1]
 mes_max = meses_del_año[0][0]
