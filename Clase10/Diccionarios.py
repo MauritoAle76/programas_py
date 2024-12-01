@@ -105,6 +105,6 @@ dic = {
 
 print(dic[1]["nombre"])
 
-dic[4] = {"nombre": "Jose", "edad": 25}
+dic = {"nombre": "Jose", "edad": 25}
 
 print(dic)
