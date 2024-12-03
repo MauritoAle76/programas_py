@@ -8,9 +8,6 @@ Si la cantidad solicitada es mayor a la disponible, debe mostrar un mensaje de e
 
 """
 
-# cargo colorama para darle forma al texto
-from colorama import init, Fore, Style
-
 # variables
 inventario = {
     1: {"nombre": "YERBA", "cantidad": 40, "precio": 8000},
@@ -26,18 +23,19 @@ inventario = {
 
 
 #  dar de baja del stock un articulo buscando por el ID:
-def dar_de_baja_stock_por_vta(inventario, canti_vendida, codigo_producto):
-    for codigo_producto, productos in inventario.items():
-        producto = inventario[codigo_producto]
-        if canti_vendida <= producto["cantidad"]:
-            inventario[codigo_producto]["cantidad"] -= canti_vendida
+def dar_de_baja_stock_por_vta(inventario, codigo_producto, cantidad):
+    if inventario.get(codigo_producto):
+        if inventario.get(codigo_producto)["cantidad"] >= canti_vendida:
+            inventario.get(codigo_producto)["cantidad"] -= canti_vendida
+            print("venta realizada con exito")
+
             return True
         else:
-            print("No hay suficiente stock")
-            return False
+            print(
+                "\nVenta no realizada por falta de stock, baje la cantidad a vender\n"
+            )
     else:
-        print("Producto no encontrado")
-        return False
+        print("Producto no encontrado el ID", codigo_producto, " no existe")
 
 
 # inicio programa
@@ -46,10 +44,8 @@ codigo_producto = int(input("Ingrese el ID: "))
 canti_vendida = int(input("Ingrese la cantidad vendida: "))
 
 if dar_de_baja_stock_por_vta(inventario, codigo_producto, canti_vendida):
-    print("Venta realizada con exito")
+    # Recorro la lista con un for para imprimir el diccionario
     for clave, productos in inventario.items():
         print(
             f"ID: {clave} - Nombre: {productos['nombre']} - Cantidad: {productos['cantidad']} - Precio: {productos['precio']}"
         )
-else:
-    print("Venta no realizada")
