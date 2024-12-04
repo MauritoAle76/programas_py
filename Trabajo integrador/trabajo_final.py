@@ -13,6 +13,15 @@ para realizar búsquedas y generar reportes de stock
 # esto no lo conozco muy bien, lo voy a investigar con el IA Geminis
 from colorama import init, Fore, Style
 
+# me traigo el modulo
+import sqlite3
+
+# me conecto a la base de datos
+conexion = sqlite3.connect("inventario.db")
+
+# creo un cursor
+cursor = conexion.cursor()
+
 
 # --------------- DECLARACION de Variables: listas, tuplas y diccionarios ------------------------
 
