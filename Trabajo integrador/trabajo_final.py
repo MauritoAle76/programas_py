@@ -16,16 +16,18 @@ from colorama import init, Fore, Style
 # me traigo el modulo
 import sqlite3
 
-# me conecto a la base de datos
+# me conecto a la base de datos y si no exite la creo
 conexion = sqlite3.connect("inventario.db")
 
 # creo un cursor
 cursor = conexion.cursor()
 
+# cierro la conexion
+conexion.close()
 
 # --------------- DECLARACION de Variables: listas, tuplas y diccionarios ------------------------
 
-inventario = {}
+inventario = []
 
 producto = {
     "nombre": None,
@@ -37,12 +39,31 @@ producto = {
 
 
 # ******************** ****DECLARACION DE FUNCIONES *******************
+# creo tabla inventario
+def crear_tabla():
+    conexion = sqlite3.connect("inventario.db")
+    cursor = conexion.cursor()
+
+    cursor.execute(
+        """ CREATE TABLE IF NOT EXISTS productos (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        nombre TEXT NOT NULL,
+        descripcion TEXT,
+        cantidad INTEGER NOT NULL,
+        precio REAL NOT NULL,
+        categoria TEXT
+        )"""
+    )
+    conexion.commit()
+    conexion.close()
 
 
 def alta_producto():  # para la opcion 1 del menu
+    conexion = sqlite3.connect("inventario.db")
+    cursor = conexion.cursor()
+
     while True:
         # Solicitar al usuario que ingrese los datos del producto
-        producto_id = len(inventario) + 1  # asigno el ID idea de IA geminis
         nombre = input(
             "Ingrese el nombre del producto: "
         ).upper()  # str. lo asigno con un metodo
@@ -67,27 +88,38 @@ def alta_producto():  # para la opcion 1 del menu
             print()
             precio = float(input("Ingrese el precio del producto: "))
 
-        # Si es mayor a 0 lo agrego al diccionario global
-        inventario[producto_id] = {
-            "nombre": nombre,
-            "descripcion": descripcion,
-            "cantidad": cantidad,
-            "precio": precio,
-            "categoria": categoria,
-        }
+        # Si es mayor a 0 lo agrego al lista temporal y luego lo agrego al inventario Global
+        inventario_temp = (nombre, descripcion, cantidad, precio, categoria)
+        inventario.append(inventario_temp)
         print(Fore.BLUE + "\nProducto agregado con exito\n" + Style.RESET_ALL)
 
+        # sigo agregando productos hasta que el usuario decida salir
+        # cuando sale del bucle sale del programa
+        # recien ahi se graban los datos en la BD y cierra la conexion
+        # se crea un for para que se puedan agregar varios productos ala BD
         opcion = input("Desea agregar otro producto? (s/n): ").lower()
         if opcion != "s":
+            for producto in inventario:
+                cursor.execute(
+                    "INSERT INTO productos (nombre, descripcion, cantidad, precio, categoria) VALUES (?,?,?,?,?)",
+                    producto,
+                )
+            conexion.commit()
+            inventario.clear()
             break
+
+    conexion.close()
     return inventario
 
 
 def mostrar_todos_los_productos():
     print("FUNCION EN DESARROLO para la OPCION 2")
+    # conecto a la base y creo el cursor
+    conexion = sqlite3.connect("inventario.db")
+    cursor = conexion.cursor()
+
+    cursor.execute()
     print("Listado completo de la tienda")
-    for id, producto in inventario.items():
-        print("ID", id, "Articulo", producto)
 
 
 def actualizar_cantidad():
@@ -164,5 +196,7 @@ def main():
 
 
 ######  INVOCAMOS A LA FUNCION PRINCIPAL  #######
+
+crear_tabla()
 
 main()
