@@ -47,7 +47,7 @@ def main():
         )  # mostrar el menu de opciones la opcion viene de la Funcion yla variable opcion es el return de la funcion
         print()
         print(
-            "Usted seleciono la opcion : ",
+            Fore.BLUE + "Usted seleciono la opcion : " + Style.RESET_ALL,
             opcion,
         )
         print()
@@ -70,7 +70,11 @@ def main():
             menu_generar_reporte_bajo_stock()
 
         elif opcion == 7:
-            print("Saliendo de la app, muchas gracias por utilizar nuesto sistema\n")
+            print(
+                Fore.GREEN
+                + "Saliendo de la app, muchas gracias por utilizar nuesto sistema\n"
+                + Style.RESET_ALL
+            )
             break
         else:
             print(Fore.RED + "La opción es incorrecta\n" + Style.RESET_ALL)

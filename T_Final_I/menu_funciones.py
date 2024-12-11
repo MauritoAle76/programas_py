@@ -71,12 +71,20 @@ def menu_alta_producto():  # para la opcion 1 del menu
             )  # le damos color ROJO
             print()
 
-            cantidad = int(input("Reingrese cantidad : "))
+            cantidad = int(input(Fore.BLUE + "Reingrese cantidad : " + Style.RESET_ALL))
             print()
 
-            precio = float(input("Reingrese el precio : "))
+            precio = float(
+                input(Fore.BLUE + "Reingrese el precio : " + Style.RESET_ALL)
+            )
 
-            minimo_stock = int(input("Reingrese cantidad de STOCK MINIMO : "))
+            minimo_stock = int(
+                input(
+                    Fore.BLUE
+                    + "Reingrese cantidad de STOCK MINIMO : "
+                    + Style.RESET_ALL
+                )
+            )
 
         # Si es mayor a 0 lo agrego se guarda en un diccionario
         inventario = {
@@ -282,14 +290,19 @@ def menu_generar_reporte_bajo_stock():
     print("REPORTE DE BAJO STOCK")
     print("-" * 30)
     print()
-    print("FUNCION EN DESARROLLO para la OPCION 6")
 
     resultado = db_reporte_de_bajo_stock()
     if not resultado:
-        print("\n No hay productos con stock bajo")
+        print(Fore.BLUE + "\n No hay productos con stock bajo" + Style.RESET_ALL)
     else:
-        print("\n Los siguientes productos estan con stock bajo:")
+        print(
+            Fore.LIGHTBLUE_EX
+            + "\n Los siguientes productos estan con stock bajo:"
+            + Style.RESET_ALL
+        )
         for producto in resultado:
             print(
-                f"\n ID: {producto[0]}, Nombre: {producto[1]}, Cantidad : {producto[3]}"
+                Fore.GREEN
+                + f"\n ID: {producto[0]}, Nombre: {producto[1]}, Cantidad : {producto[3]}"
+                + Style.RESET_ALL
             )
